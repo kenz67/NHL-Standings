@@ -1,0 +1,124 @@
+﻿@page "/"
+@using System.Diagnostics.CodeAnalysis;
+@using nhl.Data;
+@using nhl.Services;
+@using BootstrapBlazor.Components
+
+@inject INHLService nhlService;
+
+
+<PageTitle>Standings</PageTitle>
+<h1>Standings</h1>
+<Collapse>
+    <CollapseItems>
+        <CollapseItem Text="Eastern Conference" TitleColor="Color.Dark">
+            <Collapse>
+                <CollapseItems>
+                    <CollapseItem Text="Atlantic" TitleColor="Color.Success">                        
+                        <Table IsBordered="true" IsStriped="true" AllowDragColumn="true" TItem="ExpandedStandingsData" Items="@nhlService.AtlanticDivision">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Wins" />
+                                <TableColumn @bind-Field="@context.Losses" />
+                                <TableColumn @bind-Field="@context.OTL" />
+                                <TableColumn @bind-Field="@context.Points" />
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+                    <CollapseItem Text="Metropolitan" TitleColor="Color.Success">
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.MetroPolitanDivision">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Wins" />
+                                <TableColumn @bind-Field="@context.Losses" />
+                                <TableColumn @bind-Field="@context.OTL" />
+                                <TableColumn @bind-Field="@context.Points" />
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+
+                    <CollapseItem Text="Conference" TitleColor="Color.Success" >
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.EasternConference" >
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Wins" />
+                                <TableColumn @bind-Field="@context.Losses" />
+                                <TableColumn @bind-Field="@context.OTL" />
+                                <TableColumn @bind-Field="@context.Points" />
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+
+                </CollapseItems>
+            </Collapse>
+        </CollapseItem>
+        <CollapseItem Text="Western Conference" TitleColor="Color.Dark">
+            <Collapse>
+                <CollapseItems>
+                    <CollapseItem Text="Central" TitleColor="Color.Success">
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.CentralDivision">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Wins" />
+                                <TableColumn @bind-Field="@context.Losses" />
+                                <TableColumn @bind-Field="@context.OTL" />
+                                <TableColumn @bind-Field="@context.Points" />
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+
+                    <CollapseItem Text="Pacific" TitleColor="Color.Success">
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.PacificDivision">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Wins" />
+                                <TableColumn @bind-Field="@context.Losses" />
+                                <TableColumn @bind-Field="@context.OTL" />
+                                <TableColumn @bind-Field="@context.Points" />
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+
+                    <CollapseItem Text="Conference" TitleColor="Color.Success">
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.WesternConference">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Wins" />
+                                <TableColumn @bind-Field="@context.Losses" />
+                                <TableColumn @bind-Field="@context.OTL" />
+                                <TableColumn @bind-Field="@context.Points" />
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+                </CollapseItems>
+            </Collapse>
+        </CollapseItem>
+        <CollapseItem Text="League" TitleColor="Color.Dark">
+            <Table TItem="ExpandedStandingsData" Items="@nhlService.League">
+                <TableColumns>
+                    <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                    <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                    <TableColumn @bind-Field="@context.Wins" />
+                    <TableColumn @bind-Field="@context.Losses" />
+                    <TableColumn @bind-Field="@context.OTL" />
+                    <TableColumn @bind-Field="@context.Points" />
+                </TableColumns>
+            </Table>
+            </CollapseItem>
+    </CollapseItems>
+</Collapse>
+
+
+@code 
+{
+    protected async override void OnInitialized()
+    {
+        await nhlService.ReadStandings();
+    }
+}

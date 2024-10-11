@@ -1,0 +1,138 @@
+﻿@page "/playoff"
+@using System.Diagnostics.CodeAnalysis;
+@using nhl.Data;
+@using nhl.Services;
+@using BootstrapBlazor.Components
+
+@inject INHLService nhlService;
+
+
+<PageTitle>Playoff Picture</PageTitle>
+<h1>Playoff Picture</h1>
+<Collapse>
+    <CollapseItems>
+        <CollapseItem Text="Eastern Conference" TitleColor="Color.Dark">
+            <Collapse>
+                <CollapseItems>
+                    <CollapseItem Text="Atlantic" TitleColor="Color.Success">                        
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.AtlanticDivision.OrderByDescending(l => l.PredictedPoints)">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Points" Text="Points" />
+                                <TableColumn @bind-Field="@context.MaxPoints" Text="Max" />
+                                <TableColumn @bind-Field="@context.PredictedPoints" Text="Predicted" />
+                                <TableColumn @bind-Field="@context.BestDivisionFinish" Text="Best Finish" />
+                                <TableColumn @bind-Field="@context.WorstDivisionFinish" Text="Worst Finish" />
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+                    <CollapseItem Text="Metropolitan" TitleColor="Color.Success">
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.MetroPolitanDivision.OrderByDescending(l => l.PredictedPoints)">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Points" Text="Points" />
+                                <TableColumn @bind-Field="@context.MaxPoints" Text="Max" />
+                                <TableColumn @bind-Field="@context.PredictedPoints" Text="Predicted" />
+                                <TableColumn @bind-Field="@context.BestDivisionFinish" Text="Best Finish" />
+                                <TableColumn @bind-Field="@context.WorstDivisionFinish" Text="Worst Finish" />
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+
+                    <CollapseItem Text="Conference" TitleColor="Color.Success" >
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.EasternConference.OrderByDescending(l => l.PredictedPoints)">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Points" Text="Points" />
+                                <TableColumn @bind-Field="@context.MaxPoints" Text="Max" />
+                                <TableColumn @bind-Field="@context.PredictedPoints" Text="Predicted" />
+                                <TableColumn @bind-Field="@context.BestConferenceFinish" Text="Best Finish" />
+                                <TableColumn @bind-Field="@context.WorstConferenceFinish" Text="Worst Finish" />
+
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+
+                </CollapseItems>
+            </Collapse>
+        </CollapseItem>
+        <CollapseItem Text="Western Conference" TitleColor="Color.Dark">
+            <Collapse>
+                <CollapseItems>
+                    <CollapseItem Text="Central" TitleColor="Color.Success">
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.CentralDivision.OrderByDescending(l => l.PredictedPoints)">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Points" Text="Points" />
+                                <TableColumn @bind-Field="@context.MaxPoints" Text="Max" />
+                                <TableColumn @bind-Field="@context.PredictedPoints" Text="Predicted" />
+                                <TableColumn @bind-Field="@context.BestDivisionFinish" Text="Best Finish" />
+                                <TableColumn @bind-Field="@context.WorstDivisionFinish" Text="Worst Finish" />
+
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+
+                    <CollapseItem Text="Pacific" TitleColor="Color.Success">
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.PacificDivision.OrderByDescending(l => l.PredictedPoints)">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Points" Text="Points" />
+                                <TableColumn @bind-Field="@context.MaxPoints" Text="Max" />
+                                <TableColumn @bind-Field="@context.PredictedPoints" Text="Predicted" />
+                                <TableColumn @bind-Field="@context.BestDivisionFinish" Text="Best Finish" />
+                                <TableColumn @bind-Field="@context.WorstDivisionFinish" Text="Worst Finish" />
+
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+
+                    <CollapseItem Text="Conference" TitleColor="Color.Success">
+                        <Table TItem="ExpandedStandingsData" Items="@nhlService.WesternConference.OrderByDescending(l => l.PredictedPoints)">
+                            <TableColumns>
+                                <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                                <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                                <TableColumn @bind-Field="@context.Points" Text="Points" />
+                                <TableColumn @bind-Field="@context.MaxPoints" Text="Max" />
+                                <TableColumn @bind-Field="@context.PredictedPoints" Text="Predicted" />
+                                <TableColumn @bind-Field="@context.BestConferenceFinish" Text="Best Finish" />
+                                <TableColumn @bind-Field="@context.WorstConferenceFinish" Text="Worst Finish" />
+
+                            </TableColumns>
+                        </Table>
+                    </CollapseItem>
+                </CollapseItems>
+            </Collapse>
+        </CollapseItem>
+        <CollapseItem Text="League" TitleColor="Color.Dark">
+            <Table TItem="ExpandedStandingsData" Items="@nhlService.League.OrderByDescending(l => l.PredictedPoints)">
+                <TableColumns>
+                    <TableColumn @bind-Field="@context.TeamName" Text="Team" />
+                    <TableColumn @bind-Field="@context.GamesPlayed" Text="Games" />
+                    <TableColumn @bind-Field="@context.Points" Text="Points" />
+                    <TableColumn @bind-Field="@context.MaxPoints" Text="Max" />
+                    <TableColumn @bind-Field="@context.PredictedPoints" Text="Predicted" />
+                    <TableColumn @bind-Field="@context.BestLeagueFinish" Text="Best Finish" />
+                    <TableColumn @bind-Field="@context.WorstLeagueFinish" Text="Worst Finish" />
+                </TableColumns>
+            </Table>
+            </CollapseItem>
+    </CollapseItems>
+</Collapse>
+
+
+@code 
+{
+    protected async override void OnInitialized()
+    {
+        if (nhlService.League is null)
+        {
+            await nhlService.ReadStandings();
+        }
+    }
+}
